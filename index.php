@@ -37,16 +37,17 @@ $array_partite = [
 $nome = $_GET['name'];
 $mail = $_GET['email'];
 $eta = $_GET['age'];
+$risultato_accesso = '';
 if (empty($nome) || empty($mail) || empty($eta)) {
-  echo 'Accesso negato.';
+  $risultato_accesso = 'Accesso negato.';
 } elseif (strlen($nome) <= 3) {
-  echo 'Accesso negato.';
+  $risultato_accesso = 'Accesso negato.';
 } elseif (strpos($mail,'@') === false || strpos($mail,'.') === false) {
-  echo 'Accesso negato.';
+  $risultato_accesso = 'Accesso negato.';
 } elseif (is_numeric($eta) === false) {
-  echo 'Accesso negato.';
+  $risultato_accesso = 'Accesso negato.';
 } else {
-  echo 'Accesso riuscito.';
+  $risultato_accesso = 'Accesso riuscito.';
 }
 ?>
 <!DOCTYPE html>
@@ -68,5 +69,10 @@ if (empty($nome) || empty($mail) || empty($eta)) {
        </li>
       </ul>
     <?php } ?>
+
+    <!-- Stampo a schermo se l'utente ha le credenziali per entrare -->
+    <h2>Accedi al sito</h2>
+    <p>Scrivi nome, mail ed età nell'url per accedere</p>
+    <p> <?php echo $risultato_accesso ?> </p>
   </body>
 </html>
