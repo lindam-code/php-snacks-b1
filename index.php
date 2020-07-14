@@ -26,6 +26,28 @@ $array_partite = [
     'punti_ospite' => 171,
   ]
 ];
+
+// Snack 2
+// Passare come parametri GET name, mail e age e verificare
+// (cercando i metodi che non conosciamo nella documentazione) che:
+// 1. name sia più lungo di 3 caratteri,
+// 2. che mail contenga un punto e una chiocciola
+// 3. e che age sia un numero.
+// Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato”
+$nome = $_GET['name'];
+$mail = $_GET['email'];
+$eta = $_GET['age'];
+if (empty($nome) || empty($mail) || empty($eta)) {
+  echo 'Accesso negato.';
+} elseif (strlen($nome) <= 3) {
+  echo 'Accesso negato.';
+} elseif (strpos($mail,'@') === false || strpos($mail,'.') === false) {
+  echo 'Accesso negato.';
+} elseif (is_numeric($eta) === false) {
+  echo 'Accesso negato.';
+} else {
+  echo 'Accesso riuscito.';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -40,9 +62,9 @@ $array_partite = [
       <?php $this_partita = $array_partite[$i]; ?>
       <ul>
        <li>
-         <?php echo $this_partita[casa] ?> - <?php echo $this_partita[ospite] ?>
+         <?php echo $this_partita['casa'] ?> - <?php echo $this_partita['ospite'] ?>
          /
-         <?php echo $this_partita[punti_casa] ?> - <?php echo $this_partita[punti_ospite] ?>
+         <?php echo $this_partita['punti_casa'] ?> - <?php echo $this_partita['punti_ospite'] ?>
        </li>
       </ul>
     <?php } ?>
